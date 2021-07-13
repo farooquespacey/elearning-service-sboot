@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: sboot-test-drive
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Night King
+Implementation-Vendor-Id: com.spacey.springboot
+Build-Jdk: 1.8.0_251
+Implementation-URL: http://projects.spring.io/spring-boot/sboot-test-d
+ rive/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
