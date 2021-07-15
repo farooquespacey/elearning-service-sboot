@@ -1,45 +1,60 @@
 package com.spacey.springboot.course;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
 import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 class CourseMaterial {
-    @Id
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Getter
+	@Setter
+	private Long id;
 
-    private String url;
+	@Getter
+	@Setter
+	private String url;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
-    private Course course;
+//	@OneToOne(optional = false)
+//	@JoinColumn(name = "course_id", referencedColumnName = "id")
+	@OneToOne(mappedBy = "material", optional = false)
+	@JsonSerialize(using = CourseToStringSerializer.class)
+	@Getter
+	@Setter
+	private Course course;
+	
+	public CourseMaterial() {}
+	
+	public CourseMaterial(String url) { this.url = url; }
 
-    public CourseMaterial() {}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		CourseMaterial that = (CourseMaterial) o;
+		return Objects.equals(id, that.id);
+	}
 
-    public Long id() {
-        return id;
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 
-    public String url() {
-        return url;
-    }
+	@Override
+	public String toString() {
+		return "CourseMaterial [id=" + id + ", url=" + url + "]";
+	}
 
-    public Course course() {
-        return course;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CourseMaterial that = (CourseMaterial) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

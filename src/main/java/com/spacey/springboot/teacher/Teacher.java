@@ -1,52 +1,62 @@
 package com.spacey.springboot.teacher;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.spacey.springboot.converters.ListCourseConverter;
 import com.spacey.springboot.course.Course;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
+@JsonIgnoreProperties(value = { "courses" }, allowGetters = true)
 public class Teacher {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String firstName;
-    private String lastName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Getter
+	@Setter
+	private Long id;
+	@Getter
+	@Setter
+	@JsonProperty("first_name")
+	private String firstName;
+	@Getter
+	@Setter
+	@JsonProperty("last_name")
+	private String lastName;
 
-    public Teacher() {}
+	@OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL /*Try , fetch = EAGER*/)
+	@JsonSerialize(converter = ListCourseConverter.class)
+	@Getter
+	@Setter
+	private List<Course> courses = new ArrayList<>();
+	
+	public static Teacher createWithId(Long id) {
+		return new Teacher(id);
+	}
 
-    @OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER)
-    private List<Course> courses;
+	public Teacher() {
+	}
 
-    public Long id() {
-        return id;
-    }
+	private Teacher(Long id) {
+		this.id = id;
+	}
 
-    public String firstName() {
-        return firstName;
-    }
+	@Override
+	public String toString() {
+		return "Teacher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", courses=" + courses
+				+ "]";
+	}
 
-    public String lastName() {
-        return lastName;
-    }
-
-    public List<Course> courses() {
-        return courses;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }
