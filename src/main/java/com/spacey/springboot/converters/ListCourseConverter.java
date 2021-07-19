@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.util.StdConverter;
-import com.spacey.springboot.course.Course;
+import com.spacey.springboot.course.data.Course;
 
 /**
  * Custom Converter for List<Course> fields

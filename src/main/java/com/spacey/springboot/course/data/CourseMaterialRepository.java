@@ -1,4 +1,4 @@
-package com.spacey.springboot.course;
+package com.spacey.springboot.course.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

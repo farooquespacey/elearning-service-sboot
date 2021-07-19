@@ -333,11 +333,11 @@ Course --Bi(OneToOne)-- CourseMaterial
 Course --Bi(ManyToOne)-- Teacher
 Course --Bi(ManyToMany)-- Student
 
-1) For the first case, If CourseMaterial becomes the owning side then creation of course with course material require the following steps to save both:
+1) For the first case, since Course and CourseMaterial has bi-directional relationship, creation of course with course material require the following steps to save both:
 		course.setTeacher(new Teacher(teacherId));
 		course.getMaterial().setCourse(course); // additionally required
 		return courseService.createCourse(course);
-This 2nd line is not required when the Course becomes the owning side for this O2O relationships. 
+This 2nd line is not required when the Course has uni-directional relationship with CourseMaterial. 
 
 2) For the second case, if Teacher's courses are fetched with EAGER then the deletion of the course will not be removed from its persisted object. 
 

@@ -1,4 +1,4 @@
-package com.spacey.springboot.course;
+package com.spacey.springboot.course.web;
 
 import java.util.List;
 
@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spacey.springboot.course.business.CourseService;
+import com.spacey.springboot.course.data.Course;
+import com.spacey.springboot.course.data.CourseMaterial;
 import com.spacey.springboot.response.StatusResponse;
-import com.spacey.springboot.teacher.Teacher;
+import com.spacey.springboot.teacher.data.Teacher;
 
 @RestController
 @RequestMapping("/api/course")
@@ -38,10 +41,17 @@ public class CourseController {
 		return courseService.fetchAllCoursesBy(teacherId);
 	}	
 
+//	@PostMapping("/by/{teacherId}")
+//	public Course createCourse(@RequestBody Course course, @PathVariable("teacherId") Long teacherId) {
+//		course.setTeacher(Teacher.createWithId(teacherId));
+////		course.getMaterial().setCourse(course); // required if CourseMaterial becomes the owner of O2O mapping
+//		return courseService.createCourse(course);
+//	}
+	
 	@PostMapping("/by/{teacherId}")
 	public Course createCourse(@RequestBody Course course, @PathVariable("teacherId") Long teacherId) {
 		course.setTeacher(Teacher.createWithId(teacherId));
-//		course.getMaterial().setCourse(course); // required if CourseMaterial becomes the owner of O2O mapping
+		course.getMaterial().setCourse(course);
 		return courseService.createCourse(course);
 	}
 

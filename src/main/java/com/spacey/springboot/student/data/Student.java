@@ -1,4 +1,4 @@
-package com.spacey.springboot.student;
+package com.spacey.springboot.student.data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.spacey.springboot.converters.ListCourseConverter;
-import com.spacey.springboot.course.Course;
+import com.spacey.springboot.course.data.Course;
 
 import lombok.Getter;
 import lombok.Setter;

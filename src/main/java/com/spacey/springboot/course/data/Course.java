@@ -1,4 +1,4 @@
-package com.spacey.springboot.course;
+package com.spacey.springboot.course.data;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -19,20 +19,27 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.spacey.springboot.student.Student;
-import com.spacey.springboot.teacher.Teacher;
+import com.spacey.springboot.course.business.CourseMaterialDeserializer;
+import com.spacey.springboot.course.business.CourseSerializer;
+import com.spacey.springboot.student.data.Student;
+import com.spacey.springboot.teacher.data.Teacher;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor @AllArgsConstructor @Builder 
 @JsonSerialize(using = CourseSerializer.class)
 @JsonIgnoreProperties(value = { "teacher", "students" }, allowGetters = true) // if you want to serialize
 																				// properties but ignore few
 																				// while deserializing it
 public class Course {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
 	private Long id;
@@ -58,15 +65,19 @@ public class Course {
 	@JoinTable(name = "students_courses", joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
 	@Getter
 	@Setter
+	@Default
 	private Set<Student> students = new HashSet<>();
-
-	public Course() {
-	}
 
 //    public Course(String title) {
 //        this.title = title;
 //    }
 
+	
+	public Course(String title, CourseMaterial material) {
+		this.title = title;
+		this.material = material;
+	}
+	
 	public Course(Long courseId) {
 		this.id = courseId;
 	}

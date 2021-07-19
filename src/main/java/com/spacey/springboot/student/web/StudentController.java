@@ -1,4 +1,4 @@
-package com.spacey.springboot.student;
+package com.spacey.springboot.student.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spacey.springboot.response.StatusResponse;
+import com.spacey.springboot.student.business.StudentService;
+import com.spacey.springboot.student.data.Student;
 
 @RestController
 @RequestMapping("/api/student")

@@ -1,4 +1,4 @@
-package com.spacey.springboot.student;
+package com.spacey.springboot.student.data;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 

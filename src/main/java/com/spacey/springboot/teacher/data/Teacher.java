@@ -1,4 +1,4 @@
-package com.spacey.springboot.teacher;
+package com.spacey.springboot.teacher.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.spacey.springboot.converters.ListCourseConverter;
-import com.spacey.springboot.course.Course;
+import com.spacey.springboot.course.data.Course;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder.Default;
 
 @Entity
+@NoArgsConstructor @AllArgsConstructor @Builder
 @JsonIgnoreProperties(value = { "courses" }, allowGetters = true)
 public class Teacher {
 	@Id
@@ -40,16 +45,14 @@ public class Teacher {
 	@JsonSerialize(converter = ListCourseConverter.class)
 	@Getter
 	@Setter
+	@Default
 	private List<Course> courses = new ArrayList<>();
 	
 	public static Teacher createWithId(Long id) {
 		return new Teacher(id);
 	}
 
-	public Teacher() {
-	}
-
-	private Teacher(Long id) {
+	public Teacher(Long id) {
 		this.id = id;
 	}
 

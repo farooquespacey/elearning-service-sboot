@@ -1,4 +1,4 @@
-package com.spacey.springboot.course;
+package com.spacey.springboot.course.data;
 
 import java.util.Objects;
 
@@ -9,14 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.spacey.springboot.course.business.CourseToStringSerializer;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-class CourseMaterial {
+@NoArgsConstructor @AllArgsConstructor
+public class CourseMaterial {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
 	private Long id;
@@ -32,8 +36,6 @@ class CourseMaterial {
 	@Getter
 	@Setter
 	private Course course;
-	
-	public CourseMaterial() {}
 	
 	public CourseMaterial(String url) { this.url = url; }
 

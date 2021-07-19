@@ -1,4 +1,4 @@
-package com.spacey.springboot.course;
+package com.spacey.springboot.course.business;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.spacey.springboot.course.data.CourseMaterial;
 
 /**
  * Custom serializer for Course class by ignoring its other properties in JSON.
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
  * @author Spacey4uq
  *
  */
-class CourseMaterialDeserializer extends StdDeserializer<CourseMaterial> {
+public class CourseMaterialDeserializer extends StdDeserializer<CourseMaterial> {
 
 	/**
 	 * 
