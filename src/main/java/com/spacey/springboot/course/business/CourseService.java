@@ -22,7 +22,6 @@ public class CourseService {
 
 	public Course fetchCourse(Long courseId) {
 		return courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("course not found"));
-//		return courseRepository.findOne(courseId);
 	}
 
 	public List<Course> fetchAllCourses() {
@@ -51,7 +50,6 @@ public class CourseService {
 	@Transactional
 	public StatusResponse deleteCourse(Long courseId) {
 		courseRepository.deleteById(courseId);
-//		courseRepository.delete(courseId);
 		return new StatusResponse("success");
 	}
 

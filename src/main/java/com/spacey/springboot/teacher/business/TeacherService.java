@@ -19,13 +19,13 @@ public class TeacherService {
 	public Teacher getTeacher(Long teacherId) {
 		try {
 			return teacherRepository.findById(teacherId).orElseThrow(() -> new RuntimeException());	
-//			return teacherRepository.findOne(teacherId);
 		} catch(Exception e) {
 			throw new TeacherNotFoundException("teacher id not found");
 		}
 		
 	}
 	
+	// Not used now but kept here to cover JUnit tests
 	public Teacher getTeacherByName(String firstName, String lastName) {
 		return teacherRepository.findByFirstNameAndLastName(firstName, lastName).orElse(null);
 	}
@@ -37,7 +37,6 @@ public class TeacherService {
 	public StatusResponse deleteTeacher(Long teacherId) {
 		try {
 			teacherRepository.deleteById(teacherId);
-//			teacherRepository.delete(teacherId);
 		} catch (Exception e) {
 			throw new TeacherNotFoundException("teacher id not found, " + e.getMessage());
 		}

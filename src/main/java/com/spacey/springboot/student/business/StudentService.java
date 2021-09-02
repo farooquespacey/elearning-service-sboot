@@ -15,7 +15,6 @@ public class StudentService {
 
 	public Student fetchStudent(Long studentId) {
 		return studentRepository.findById(studentId).orElseThrow(() -> new RuntimeException("student not found"));
-//		return studentRepository.findOne(studentId);
 	}
 
 	public Student createStudent(Student student) {
@@ -24,7 +23,6 @@ public class StudentService {
 
 	public StatusResponse deleteStudent(Long studentId) {
 		studentRepository.deleteById(studentId);
-//		studentRepository.delete(studentId);
 		return new StatusResponse("success");
 	}
 

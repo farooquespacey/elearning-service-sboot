@@ -1,5 +1,7 @@
 package com.spacey.springboot.teacher.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,12 @@ public class TeacherController {
 	@GetMapping("/{teacherId}")
 	public Teacher getTeacher(@PathVariable("teacherId") Long teacherId) {
 		return teacherService.getTeacher(teacherId);
+	}
+	
+	// Not used now but kept here to cover JUnit tests
+	@GetMapping
+	public List<Teacher> getAllTeachers() {
+		return teacherService.getAllTeachers();
 	}
 	
 	@PostMapping

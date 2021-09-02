@@ -34,11 +34,11 @@ import com.spacey.springboot.teacher.data.TeacherRepository;
  * repository for performing CRUD operation.
  * 
  * We will write pure unit tests of the service implementation –
- * ProductServiceImpl . The reason is that unit tests are super-fast and
+ * TeacherService. The reason is that unit tests are super-fast and
  * therefore cuts down developers’ time.
  * 
  * Note that in unit testing, when we have external dependencies, we mock the
- * dependencies. So in this example, we will mock the ProductRepository class.
+ * dependencies. So in this example, we will mock the TeacherRepository class.
  * 
  * For more information on mocking, refer to my post Mocking in Unit Tests with
  * Mockito.
